@@ -1,13 +1,12 @@
-import { useState } from 'react'
-
-import './App.css'
+import './index.css'
+import React from 'react'
+import Dashboard from './Components/DashboardPage/HOD/HODd'
 
 function App() {
-
-
-  return (
-    <>Start fresh</>
-  )
+     return(
+      <Dashboard/>
+     )
+    
+     
 }
-
 export default App
