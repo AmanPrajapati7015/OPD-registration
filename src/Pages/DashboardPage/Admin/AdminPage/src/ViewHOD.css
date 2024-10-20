@@ -1,0 +1,52 @@
+.hod-table-container {
+    padding: 20px;
+    background-color: #fdfdff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 100%;
+  }
+  
+  .hod-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .hod-table th,
+  .hod-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .hod-table th {
+    background-color: #40a9ff;
+    color: white;
+  }
+  
+  .hod-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .hod-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .hod-table-container h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+
+  .hod-table-container button {
+    background-color: #40a9ff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
