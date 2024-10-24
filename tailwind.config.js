@@ -14,7 +14,11 @@ export default {
       
 
     },
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '300px'
+      }
+    },
   },
   plugins: [],
 }
