@@ -16,14 +16,15 @@ const HODd = () => {
 
 
   const addDoctor = () => {
-    if (doctorName && roomNumber && available) {
+    if (doctorName && roomNumber && available &&special) {
 
-      setDoctors([...doctors, { name: doctorName, room: roomNumber , Available :available, Speciality : special}]);
+      setDoctors([...doctors, { name: doctorName, room: roomNumber , available :available, speciality : special}]);
 
       setDoctorName("");
       setRoomNumber("");
       setavailable("");
       setspecial("");
+
     } else {
       alert("Please enter both doctor's name and room number.");
     }
@@ -50,7 +51,7 @@ const HODd = () => {
 
   const doctor_profile=(doc)=>{
          setSelectedDoctor(doc)
-         console.log(selectedDoctor)
+         
          setprofile(true);
   }
 
@@ -83,9 +84,9 @@ const HODd = () => {
               <h3>Doctor Profile</h3>
               <p>Name: {selectedDoctor.name}</p>
               <p>Room: {selectedDoctor.room}</p>
+              <p>Available: {selectedDoctor.available}</p>
               <p>Speciality: {selectedDoctor.speciality}</p>
               <p>Experience: {selectedDoctor.experience}</p>
-              <p>Available: {selectedDoctor.available}</p>
               <p>Contact: {selectedDoctor.contact}</p>
 
             </div>
@@ -117,11 +118,12 @@ const HODd = () => {
             <ol className="list " start={4}>
               
                 {doctors.map((doctor, index) => (
-                  <li key={index} className="doc" >
-                    <button className='doc-list' onClick={()=>doctor_profile(doc)}>
-                    <p>{doctor.name} - Room: {doctor.room} </p>
-                    <p>Availabilty : {doctor.Available}</p>
-                    <p>Speciality: {doctor.special}</p>
+                  <li key={index} className="doc"  >
+                    <button className='doc-list' onClick={()=>doctor_profile(doctor)}>
+                    <p> Name :{doctor.name}</p>
+                      <p>Room: {doctor.room} </p>
+                    <p>Availabilty : {doctor.available}</p>
+                    <p>Speciality: {doctor.speciality }</p>
                     </button>
                   </li>
                 ))}
@@ -147,11 +149,13 @@ const HODd = () => {
             <input type="text"
             className='input'
             placeholder='Availablity' 
+            value={available}
              onChange={(e)=>setavailable(e.target.value)}
             />
             <input type="text"
             className='input'
              placeholder='speciality'
+             value={special}
              onChange={(e)=>setspecial(e.target.value)}
             />
             <button onClick={addDoctor} className="add">Add Doctor</button>
