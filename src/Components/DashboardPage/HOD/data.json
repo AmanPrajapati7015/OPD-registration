@@ -1,0 +1,24 @@
+[
+    {
+        "name":"Ankush Singh",
+        "speciality": "ENT",
+        "available": "Yes",
+        "experience": 5
+
+    },
+   
+    {
+        "name":"Dr Tarak Mehat",
+        "speciality": "Dermatologist",
+        "available": "Yes",
+        "experience": 10
+
+    },
+    {
+        "name":"Dr Aatma ram Bide",
+        "speciality": "Cardiologist",
+        "available": "Yes",
+        "experience": 15
+
+    }
+]
