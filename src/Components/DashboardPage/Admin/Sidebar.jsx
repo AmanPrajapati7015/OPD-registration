@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ViewHOD from "./ViewHOD"; 
 import AddDepartmentForm from "./AddDepartmentForm"; 
 import "./AdminPage.css";
-import Manoj from "./assets/manojkumar.jpg"; 
+import Manoj from "../../../assets/manojkumar.jpg"; 
 
 const AdminPage = () => {
   const [activeComponent, setActiveComponent] = useState(null);

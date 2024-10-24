@@ -1,10 +1,16 @@
-import './index.css'
+
 import React from 'react'
-import Dashboard from './Components/DashboardPage/HOD/HODd'
+import Dashboard from './Pages/DashboardPage/HOD/HODd'
+// import Admin from './Pages/DashboardPage/Admin/Admin'
+
+
 
 function App() {
      return(
-      <Dashboard/>
+          <>
+               <Dashboard/>
+               {/* <Admin/> */}
+          </>
      )
     
      
