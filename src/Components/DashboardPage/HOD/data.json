@@ -3,7 +3,9 @@
         "name":"Ankush Singh",
         "speciality": "ENT",
         "available": "Yes",
-        "experience": 5
+        "room":25,
+        "experience": 5,
+        "contact" : 939589924
 
     },
    
@@ -11,14 +13,18 @@
         "name":"Dr Tarak Mehat",
         "speciality": "Dermatologist",
         "available": "Yes",
-        "experience": 10
+        "room":21,
+        "experience": 10,
+        "contact" : 939832797
 
     },
     {
         "name":"Dr Aatma ram Bide",
         "speciality": "Cardiologist",
         "available": "Yes",
-        "experience": 15
+        "room":13,
+        "experience": 15,
+        "contact" : 9983981318
 
     }
 ]

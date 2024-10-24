@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import doctorsdata from "./data.json";
+import "./hod.css"
+
 const HODd = () => {
    
   const [doctors, setDoctors] = useState([]);
@@ -7,6 +9,7 @@ const HODd = () => {
   const [doctorName, setDoctorName] = useState("");
   const [roomNumber, setRoomNumber] = useState("");
   const [available, setavailable] = useState("")
+  const [special, setspecial] = useState("")
   const [isViewingDoctors, setIsViewingDoctors] = useState(false);
   const [profile, setprofile] = useState(false)
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -15,11 +18,12 @@ const HODd = () => {
   const addDoctor = () => {
     if (doctorName && roomNumber && available) {
 
-      setDoctors([...doctors, { name: doctorName, room: roomNumber , Available :available }]);
+      setDoctors([...doctors, { name: doctorName, room: roomNumber , Available :available, Speciality : special}]);
 
       setDoctorName("");
       setRoomNumber("");
       setavailable("");
+      setspecial("");
     } else {
       alert("Please enter both doctor's name and room number.");
     }
@@ -77,11 +81,13 @@ const HODd = () => {
             profile ? (
               <div>
               <h3>Doctor Profile</h3>
-              <p>Name: {selectedDoctor?.name}</p>
-              <p>Room: {selectedDoctor?.room}</p>
-              <p>Speciality: {selectedDoctor?.speciality}</p>
-              <p>Experience: {selectedDoctor?.experience}</p>
-              <p>Available: {selectedDoctor?.available}</p>
+              <p>Name: {selectedDoctor.name}</p>
+              <p>Room: {selectedDoctor.room}</p>
+              <p>Speciality: {selectedDoctor.speciality}</p>
+              <p>Experience: {selectedDoctor.experience}</p>
+              <p>Available: {selectedDoctor.available}</p>
+              <p>Contact: {selectedDoctor.contact}</p>
+
             </div>
           ) : (
             <p>Profile</p>
@@ -115,6 +121,7 @@ const HODd = () => {
                     <button className='doc-list' onClick={()=>doctor_profile(doc)}>
                     <p>{doctor.name} - Room: {doctor.room} </p>
                     <p>Availabilty : {doctor.Available}</p>
+                    <p>Speciality: {doctor.special}</p>
                     </button>
                   </li>
                 ))}
@@ -141,6 +148,11 @@ const HODd = () => {
             className='input'
             placeholder='Availablity' 
              onChange={(e)=>setavailable(e.target.value)}
+            />
+            <input type="text"
+            className='input'
+             placeholder='speciality'
+             onChange={(e)=>setspecial(e.target.value)}
             />
             <button onClick={addDoctor} className="add">Add Doctor</button>
           </div>
