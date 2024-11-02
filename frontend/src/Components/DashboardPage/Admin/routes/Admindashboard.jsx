@@ -47,7 +47,7 @@ export function AdminDashboard(){
                        <Inputbox label={"Department"} onChange={(e)=>{setDepartment(e.target.value)}}></Inputbox>
                        <Inputbox label={"Room_No."} onChange={(e)=>{setRoom_no(e.target.value)}}></Inputbox>
                        <button onClick={async()=>{
-                const response = await axios.post("" , {
+                const response = await axios.post("https://localhost:3000/admin/add" , {
                   username,
                   email,
                   password,
