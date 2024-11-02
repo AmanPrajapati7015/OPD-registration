@@ -54,7 +54,7 @@ export function AdminDashboard(){
                   department,
                   room_no,
                 })  
-               localStorage.setItem("token",response.data.token) 
+               
               }}className="px-6 py-2 rounded-full bg-blue-600 font-bold hover:bg-sky-700">Continue</button>   
                            
                        </form>
