@@ -3,6 +3,7 @@ import { Footer } from "../components/footer";
 import { HeroAdmin } from "../components/HeroAdmin";
 import { Navbar } from "../components/Navbar";
 import React, { useState } from 'react';
+import axios from 'axios'
 
 export function AdminDashboard(){
     const [showForm, setShowForm] = useState(false);
