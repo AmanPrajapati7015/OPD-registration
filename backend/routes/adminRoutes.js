@@ -1,22 +1,80 @@
 const express = require('express');
 const router = express.Router();
+const zod = require("zod");
+const { HOD } = require('../db');
 
-// Route to handle GET requests to /admin
-router.get('/', (req, res) => {
-  res.send('Welcome to the admin dashboard');
+const HODBody = zod.object({
+  username : zod.string(),
+  email : zod.string().email(),
+  password : zod.string(),
+  department : zod.string(),
+  room_no : zod.number(),
+  availability : zod.boolean()
+})
+
+router.post('/add', async (req, res) => {
+  const { success } = HODBody.safeParse(req.body)
+  if (!success) {
+    return res.status(411).json({
+        message: "Enter correct inputs"
+    })
+  }
+  try{
+  const findHOD = await HOD.findOne({
+    email : req.body.email
+  })
+
+  if(findHOD==null){
+  const createdHOD = await HOD.create({
+    username: req.body.username,
+    email : req.body.email,
+    password: req.body.password,
+    department : req.body.department,
+    room_no : req.body.room_no,
+    availability : req.body.availability
+})
+res.status(200).json({
+  message: "HOD added successfully",
+  HODid : createdHOD._id
+})
+}
+else{
+  res.json({
+    msg : "Have a HOD with same mail"
+  })
+}
+} catch (error) {
+  res.status(500).json({ message: 'Error while Adding HOD', error });
+}
+
 });
 
-// Route to handle GET requests to /admin/settings
-router.get('/settings', (req, res) => {
-  res.send('Admin settings page');
+
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Find and delete the item by ID
+    const deletedItem = await HOD.findByIdAndDelete(id);
+    
+    if (!deletedItem) {
+      return res.status(404).json({ message: 'HOD not found' });
+    }
+    
+    res.status(200).json({ message: 'HOD removed successfully', deletedItem });
+  } catch (error) {
+    res.status(500).json({ message: 'Error while removing HOD', error });
+  }
 });
 
-// Route to handle POST requests to /admin/create
-router.post('/create', (req, res) => {
-  const newAdminData = req.body;
-  // Handle admin creation logic here
-  res.send(`Admin created with data: ${JSON.stringify(newAdminData)}`);
+router.get('/',async (req, res) => {
+  try{
+  const HODs = await HOD.find({},'username department')
+  res.status(200).json(HODs);
+  
+} catch (error) {
+  res.status(500).json({ message: 'Error fetching user details', error });
+}
 });
 
-// Export the router
 module.exports = router;

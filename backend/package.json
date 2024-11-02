@@ -8,9 +8,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.1"
-  }
+    "express": "^4.21.1",
+    "mongoose": "^8.8.0",
+    "zod": "^3.23.8"
+  },
+  "description": ""
 }

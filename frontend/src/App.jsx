@@ -1,12 +1,9 @@
-
-
-
 import './App.css'
 import { Signup } from './Components/LoginPage/Signup'
 import { Signin } from './Components/LoginPage/Signin'
 import { Landingpage } from './Components/DashboardPage/Patient/routes/dashboard'
 import { PatientDashboard } from './Components/DashboardPage/Patient/routes/patientdashboard'
-import AdminDashboard from './Pages/DashboardPage/Admin/Admin'
+import { AdminDashboard } from './Components/DashboardPage/Admin/routes/Admindashboard'
 import HODd from './Pages/DashboardPage/HOD/HODd'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 function App() {
@@ -22,8 +19,7 @@ function App() {
           <Route path="/" element={<Landingpage/>} />
           <Route path="/PatientDashboard" element={ <PatientDashboard/>}/>
           <Route path="/HODDashboard" element={ <HODd/>}/>
-
-
+          <Route path="/AdminDashboard" element={ <AdminDashboard/>}/>
         </Routes>
       </BrowserRouter>
 
@@ -32,3 +28,4 @@ function App() {
   )
 }
 export default App
+
