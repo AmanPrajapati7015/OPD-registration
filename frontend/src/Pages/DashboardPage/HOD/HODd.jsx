@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import doctorsdata from "./data.json";
+import axios from 'axios'
 import "./hod.css"
 
 const HODd = () => {
    
   const [doctors, setDoctors] = useState([]);
+  
 
   const [doctorName, setDoctorName] = useState("");
   const [roomNumber, setRoomNumber] = useState("");
@@ -15,20 +17,6 @@ const HODd = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
 
-  const addDoctor = () => {
-    if (doctorName && roomNumber && available &&special) {
-
-      setDoctors([...doctors, { name: doctorName, room: roomNumber , available :available, speciality : special}]);
-
-      setDoctorName("");
-      setRoomNumber("");
-      setavailable("");
-      setspecial("");
-
-    } else {
-      alert("Please enter both doctor's name and room number.");
-    }
-  };
 
 
   const viewDoctors = () => {
@@ -55,6 +43,50 @@ const HODd = () => {
          setprofile(true);
   }
 
+
+  
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/doctor/doctor-data');
+        setDoctors(response.data)
+       
+      }
+      catch (error) {
+        console.error("Error fetching users : ", error)
+      }
+    }
+    fetchUsers();
+    console.log(doctors)
+
+  }, [])
+
+
+
+
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (doctorName && roomNumber && available && special) {
+      const newDoctor = { name: doctorName, roomNumber:roomNumber, available : available, speciality: special };
+
+
+      try {
+        const response = await axios.post("http://localhost:3000/doctor/form-data", newDoctor);
+        console.log(response.data.message); // Success message from backend
+        alert("Doctor added successfully!");
+        setDoctorName("");
+        setRoomNumber("");
+        setavailable("");
+        setspecial("");
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("There was an error submitting the form.");
+      }
+    } else {
+      alert("Please fill in all the details.");
+    }
+  };
 
 
   return (
@@ -83,7 +115,7 @@ const HODd = () => {
               <div>
               <h3>Doctor Profile</h3>
               <p>Name: {selectedDoctor.name}</p>
-              <p>Room: {selectedDoctor.room}</p>
+              <p>Room: {selectedDoctor.roomNumber}</p>
               <p>Available: {selectedDoctor.available}</p>
               <p>Speciality: {selectedDoctor.speciality}</p>
               <p>Experience: {selectedDoctor.experience}</p>
@@ -102,40 +134,29 @@ const HODd = () => {
           <div className="view-doctors">
             <h2>Doctors List</h2>
              <ol >
-              {doctorsdata.map((doc,i)=>(
+              {doctors.map((doc,i)=>(
                 <li key={i} className='doc'>
                <button className='doc-list' onClick={()=>doctor_profile(doc)} >
-              
                 <p> Name :  {doc.name} </p>
                 <p>Speciality: {doc.speciality}</p>
-                <p>Experience :{doc.experience}</p>
+                <p>Room Number : {doc.roomNumber}</p>
                 <p>Available : {doc.available}</p>
                 </button> </li>
               ))
                    
               }
              </ol>
-            <ol className="list " start={4}>
-              
-                {doctors.map((doctor, index) => (
-                  <li key={index} className="doc"  >
-                    <button className='doc-list' onClick={()=>doctor_profile(doctor)}>
-                    <p> Name :{doctor.name}</p>
-                      <p>Room: {doctor.room} </p>
-                    <p>Availabilty : {doctor.available}</p>
-                    <p>Speciality: {doctor.speciality }</p>
-                    </button>
-                  </li>
-                ))}
-              </ol>
+          
           </div>
         ):(
           <div className="add-doctor-form">
             <h2>Add Doctor</h2>
+            <form onSubmit={handleSubmit}>
             <input
               type="text"
               className="input"
               placeholder="Doctor's Name"
+              name='name'
               value={doctorName}
               onChange={(e) => setDoctorName(e.target.value)}
             />
@@ -143,22 +164,26 @@ const HODd = () => {
               type="text"
               className="input"
               placeholder="Room Number"
+              name='roomNumber'
               value={roomNumber}
               onChange={(e) => setRoomNumber(e.target.value)}
             />
             <input type="text"
             className='input'
             placeholder='Availablity' 
+            name='available'
             value={available}
              onChange={(e)=>setavailable(e.target.value)}
             />
             <input type="text"
             className='input'
              placeholder='speciality'
+             name='speciality'
              value={special}
              onChange={(e)=>setspecial(e.target.value)}
             />
-            <button onClick={addDoctor} className="add">Add Doctor</button>
+            <button  className="add">Add Doctor</button>
+            </form>
           </div>
            ) }
       </div>

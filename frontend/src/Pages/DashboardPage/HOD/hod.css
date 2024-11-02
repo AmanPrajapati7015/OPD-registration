@@ -89,10 +89,10 @@ h1{
 }
 .button{
     height:10dvh;
-    transition: all 0.5s ease;
+    transition: all 0.5s ease-in;
     background-color: rgb(130, 136, 255);
     color: white;
-    width:190px;
+    width:98%;
     border-radius: 30px;
     padding: 10px;
    
@@ -102,6 +102,7 @@ h1{
 }
 #profile{
     height:40dvh;
+
 }
 
 
@@ -112,6 +113,7 @@ h1{
    display: block;
   gap:10px;
   height:4vh;
+  width: 60%;
   border-radius: 15px;
   background-color:rgb(135, 185, 225) ;
 }
@@ -144,7 +146,7 @@ div h2{
   bottom: 0px;
   display: flex;
   justify-content: space-between;
-  width: 97.4vw;
+  width: 100vw;
   height:4vh;
   background-color: antiquewhite;
   padding: 20px;
@@ -156,13 +158,17 @@ div h2{
   width:100%;
   background: transparent;
   border: none;
-  height:80px;
+  height:90px;
+  border-bottom: solid;
 }
 .doc-list:hover{
   background-color: rgb(92, 143, 186) ;
 }
 .doc,.list{
   margin-top: 20px;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
 }
 p{
 font-size: 15px;
@@ -171,18 +177,20 @@ font-family: 'Times New Roman', Times, serif;
 
 }
 @media screen and (max-width: 768px) {
-.container {
+ .hod-dashboard {
+  
       flex-direction: column;
-      flex:wrap;
+     height: fit-content;
       }
   
 
 .sidebar {
-      min-width: 100%;
+      min-width:100%;
       flex-direction: row;
     }
   }
   .header{
     width:100%;
   }
+
   
