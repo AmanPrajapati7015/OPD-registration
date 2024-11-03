@@ -9,6 +9,5 @@ export function PatientDashboard(){
     return  (<>
     <Navbar/>
 <Heropatient></Heropatient>
-    
 <Footer/>
        </>)}

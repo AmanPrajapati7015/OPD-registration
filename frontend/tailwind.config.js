@@ -11,8 +11,6 @@ export default {
       'grey':'#171a1f',
       'hcolor':'#4850e4',
       'acolor':'#2c35e0ff'
-      
-
     },
     extend: {
       screens: {
