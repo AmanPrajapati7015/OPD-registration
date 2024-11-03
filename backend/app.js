@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/admin', adminRoutes);
+app.use('/doctor', hodRoutes);
+
 
 
 app.listen(port, () => {

@@ -59,7 +59,7 @@ const HODd = () => {
     fetchUsers();
     console.log(doctors)
 
-  }, [])
+  }, [isViewingDoctors])
 
 
 

@@ -13,6 +13,25 @@ export function AdminDashboard(){
     const [department, setDepartment] = useState();
     const [room_no, setRoom_no] = useState();
 
+    async function handleSubmit(e){
+        e.preventDefault();
+        const data = {username,
+            email,
+            password,
+            department,
+            room_no,}
+        
+        try{
+            const response = await axios.post("http://localhost:3000/admin/add" , data)  
+            alert('saved data successfully')
+            setShowForm(false);
+        }
+        catch{
+            console.log('invalid inputs');
+        }
+
+    }
+
     return  (<>
     <div>
            {showForm && (
@@ -47,16 +66,7 @@ export function AdminDashboard(){
                        <Inputbox label={"Email"} onChange={(e)=>{setEmail(e.target.value)}}></Inputbox>
                        <Inputbox label={"Department"} onChange={(e)=>{setDepartment(e.target.value)}}></Inputbox>
                        <Inputbox label={"Room_No."} onChange={(e)=>{setRoom_no(e.target.value)}}></Inputbox>
-                       <button onClick={async()=>{
-                const response = await axios.post("https://localhost:3000/admin/add" , {
-                  username,
-                  email,
-                  password,
-                  department,
-                  room_no,
-                })  
-               
-              }}className="px-6 py-2 rounded-full bg-blue-600 font-bold hover:bg-sky-700">Continue</button>   
+                       <button onClick={handleSubmit} className="px-6 py-2 rounded-full bg-blue-600 font-bold hover:bg-sky-700">Submit</button>   
                            
                        </form>
                    </div>
