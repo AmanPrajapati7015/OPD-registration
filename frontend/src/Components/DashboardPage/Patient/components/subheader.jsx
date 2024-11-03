@@ -5,7 +5,7 @@ import img2 from "./272.png"
 import img3 from "./280.png"
 import img4 from "./341.png"
 export function Subheader(){
-    return <div className="h-4/6 w-full p-20 flex flex-col justify-center items-center">
+    return <div className="h-4/6 w-full p-20 flex flex-col justify-center items-center bg-white/40">
         <div className="text-4xl font-bold flex-col flex justify-center items-center">
         <div className="my-3">Sub Header Department Section</div>
         <div className="my-3">Our Departments</div>
